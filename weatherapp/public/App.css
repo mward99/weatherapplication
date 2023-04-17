@@ -1,5 +1,7 @@
 
 
+/* 
+Using CSS to style tables source: https://www.w3schools.com/css/css_table.asp */
 table {
   border-collapse: collapse;
   width: 100%;

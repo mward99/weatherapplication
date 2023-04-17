@@ -1,9 +1,12 @@
+// Import modules
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+// Create function with a useState
 function WeatherData() {
   const [weatherData, setWeatherData] = useState([]);
 
+  // Use Effect hook that makes an API call to index.js file source: https://medium.com/geekculture/simple-data-fetching-in-react-with-the-fetch-api-and-axios-with-hooks-useeffect-and-usestate-85d6bd7357c2 and https://www.youtube.com/watch?v=re3OIOr9dJI&t=3935s
   useEffect(() => {
     axios
       .get("http://localhost:4000/weather")
@@ -15,13 +18,14 @@ function WeatherData() {
       });
   }, []);
 
-  // Calculate highest temperature, lowest temperature, and average temperature
+  // Calculate highest temperature, lowest temperature, and average temperature source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min
   const temperatures = weatherData.map((data) => data.temperature);
   const highestTemp = Math.max(...temperatures);
   const lowestTemp = Math.min(...temperatures);
   const avgTemp =
     temperatures.reduce((acc, curr) => acc + curr, 0) / temperatures.length;
 
+  // returns table with date, temp, pressure, and humidity
   return (
     <div>
       <h2>Weather Data</h2>
@@ -35,6 +39,7 @@ function WeatherData() {
           </tr>
         </thead>
         <tbody>
+          {/* Callig useState and mapping weather data */}
           {weatherData.map((data) => (
             <tr key={data.id}>
               <td>{data.timestamp}</td>
@@ -44,6 +49,7 @@ function WeatherData() {
             </tr>
           ))}
         </tbody>
+        {/* Table with highest, lowest, and average temp  */}
       </table>
       <h2>Temperature Summary</h2>
       <table>
@@ -66,6 +72,7 @@ function WeatherData() {
   );
 }
 
+// Nav bar (Not useful)
 function App() {
   return (
     <div>
